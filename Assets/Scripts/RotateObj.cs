@@ -5,7 +5,7 @@
 
 public class RotateObj : MonoBehaviour
 {
-    private float rotationRate = 3.0f;
+    private float rotationRate = 0.5f;
 
     void Update () {
         // get the user touch inpun
