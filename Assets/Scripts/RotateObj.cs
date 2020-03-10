@@ -5,72 +5,22 @@
 
 public class RotateObj : MonoBehaviour
 {
-    public GameObject objectToRotate;
- 
-    private float firstPoint;
-    private float secondPoint;
-    private int m_inc = 0;
+    private float rotationRate = 3.0f;
 
-    void Update(){
-        if (Input.touchCount == 0)
-            {
-                m_inc = 0;
-                return;
+    void Update () {
+        // get the user touch inpun
+        foreach (Touch touch in Input.touches) {
+            Debug.Log("Touching at: " + touch.position);
+   
+            if (touch.phase == TouchPhase.Began) {
+                Debug.Log("Touch phase began at: " + touch.position);
+            } else if (touch.phase == TouchPhase.Moved) {
+                Debug.Log("Touch phase Moved");
+                transform.Rotate (touch.deltaPosition.y * rotationRate, 
+                                 -touch.deltaPosition.x * rotationRate, 0, Space.World);
+            } else if (touch.phase == TouchPhase.Ended) {
+                Debug.Log("Touch phase Ended");    
             }
-    
-    
-            if (objectToRotate == null)
-            {
-                return;
-            }
-
-            if (Input.touchCount == 1)
-         {  
-             if (m_inc==0)
-             {
-                 firstPoint = (int)Input.GetTouch(0).position.x;
-                 secondPoint = (int)Input.GetTouch(0).position.x;
-             }
- 
-             m_inc++;
- 
-             if (m_inc<=10)
-             {
-                 return;
-             }
- 
-             secondPoint = (int)Input.GetTouch(0).position.x;
- 
-             if (firstPoint<secondPoint)
-             {
-                 Rotate(false);
-             }
-             else if (firstPoint > secondPoint)
-             {
-                 Rotate(true);
-             }
- 
- 
-             return;
-         }
+        }
     }
-
-    private void LateUpdate()
-     {
-         if (m_inc>=10)
-         {
-             firstPoint = (int)Input.GetTouch(0).position.x;
-         }
-     }
-
-     private void Rotate(bool right){
-        if (right)
-                {
-                    objectToRotate.transform.Rotate(Vector3.up * Time.deltaTime *200f);
-                }
-                else
-                {
-                    objectToRotate.transform.Rotate(Vector3.down * Time.deltaTime *200f);
-                }
-     }
 }
