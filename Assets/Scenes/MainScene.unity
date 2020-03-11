@@ -296,7 +296,7 @@ PrefabInstance:
     - target: {fileID: 6468551694655912902, guid: 2560a06406b4d264990d640d83c79b5f,
         type: 3}
       propertyPath: m_Name
-      value: GameObject
+      value: TestRotateableObject
       objectReference: {fileID: 0}
     - target: {fileID: 6468551695424485686, guid: 2560a06406b4d264990d640d83c79b5f,
         type: 3}
